@@ -1,0 +1,170 @@
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<style>
+			#table {
+				margin-left: 800px;
+			}
+			#totalContainer {
+				margin-left: 800px;
+			}
+			.button {
+				background-color: #4caf50; /* Green */
+				border: none;
+				color: white;
+				padding: 15px 32px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+			}
+			.button2 {
+				background-color: #008cba;
+			} /* Blue */
+			.button3 {
+				background-color: #f4c136;
+			} /* Red */
+			.button4 {
+				background-color: #e7e7e7;
+				color: black;
+			} /* Gray */
+			.button5 {
+				background-color: #555555;
+			}
+		</style>
+
+		<script>
+			var total = 0;
+			function test(x) {
+				if (x.rowIndex) {
+					var price = x.lastChild.innerHTML;
+					price.slice(4);
+					price.slice(-5);
+					var table = document.getElementById("table");
+					table.deleteRow(x.rowIndex);
+					total = total - Number(price);
+					totalPrice();
+				} else {
+					return;
+				}
+			}
+
+			function update1() {
+				var p = 25.2;
+				var x = "rice";
+				var y = document.getElementById("item");
+				var table = document.getElementById("table");
+				var row = table.insertRow();
+				row.setAttribute("onclick", "test(this)");
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = x;
+				cell2.innerHTML = p;
+				total = total + p;
+				totalPrice();
+			}
+
+			function update2() {
+				var a = 15.25;
+				var z = "beans";
+				var s = document.getElementById("item1");
+				var table = document.getElementById("table");
+				var row = table.insertRow();
+				row.setAttribute("onclick", "test(this)");
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = z;
+				cell2.innerHTML = a;
+				total = total + a;
+				totalPrice();
+			}
+
+			function update3() {
+				var b = 10.25;
+				var c = "yam";
+				var m = document.getElementById("item2");
+				var table = document.getElementById("table");
+				var row = table.insertRow();
+				row.setAttribute("onclick", "test(this)");
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = c;
+				cell2.innerHTML = b;
+				total = total + b;
+				totalPrice();
+			}
+
+			function update4() {
+				var pr = 10.0;
+				var ug = "Plantain";
+				var mg = document.getElementById("item3");
+				var table = document.getElementById("table");
+				var row = table.insertRow();
+				row.setAttribute("onclick", "test(this)");
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				cell1.innerHTML = ug;
+				cell2.innerHTML = pr;
+				total = total + pr;
+				totalPrice();
+			}
+
+			function RemoveItem() {
+				var table = document.getElementById("table");
+				var rowCount = table.rows.length;
+				table.deleteRow(rowCount - 1);
+			}
+			//if (m.value == "item3") {
+			//	price = parseFloat(b) + parseFloat(0.0);
+			//	document.getElementById("display").innerHTML = c;
+			//	document.getElementById("element").innerHTML = price;
+			//}
+
+			function totalPrice() {
+				if (total < 0) {
+					total = 0;
+				}
+				document.getElementById("totalContainer").innerHTML =
+					"Sub-total:" + total;
+			}
+		</script>
+	</head>
+
+	<body>
+		<h1>Opulent Kitchen LLC</h1>
+		<input
+			type="button"
+			class="button"
+			id="item"
+			value="rice"
+			onclick="update1();"
+		/>
+		<input
+			type="button"
+			class="button button2"
+			id="item1"
+			value="beans"
+			onclick="update2();"
+		/>
+		<input
+			type="button"
+			class="button button3"
+			id="item2"
+			value="yam"
+			onclick="update3();"
+		/><br /><br />
+		
+
+		<table id="table" style="cursor: pointer">
+			<tr>
+				<th>Product</th>
+				<th>Price</th>
+			</tr>
+		</table>
+		<br />
+		<div id="totalContainer" style="font-size: 20px"></div>
+	</body>
+</html>
